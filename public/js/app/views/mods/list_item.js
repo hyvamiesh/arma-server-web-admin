@@ -20,6 +20,10 @@ define(function (require) {
       "click .destroy": "deleteMod",
     },
 
+    modelEvents: {
+      "change": "render"
+    },
+
     deleteMod: function (event) {
       var self = this;
       sweetAlert({

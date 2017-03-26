@@ -8,9 +8,12 @@ define(function (require) {
 
   return Backbone.Model.extend({
     defaults: {
-      name: ''
+      id: '',
+      downloading: false,
+      name: '',
+      path: '',
     },
-    idAttribute: 'name',
+    idAttribute: 'id',
     urlRoot: '/api/mods/',
   });
 

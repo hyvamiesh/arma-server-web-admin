@@ -7,6 +7,7 @@ define(function (require) {
       Backbone            = require('backbone'),
       Marionette          = require('marionette'),
       ListItemView        = require('app/views/mods/list_item'),
+      FormView            = require('app/views/mods/form'),
       tpl                 = require('text!tpl/mods/list.html'),
 
       template = _.template(tpl);
@@ -17,7 +18,21 @@ define(function (require) {
     template: template,
 
     events: {
+      "click #download": "download",
       "click #refresh": "refresh",
+    },
+
+    download: function (event) {
+      event.preventDefault();
+      var view = new FormView({mods: this.collection});
+      var modal = new Backbone.BootstrapModal({
+        content: view,
+        animate: true,
+        cancelText: 'Close',
+        okText: 'Search',
+      });
+      view.modal = modal;
+      modal.open();
     },
 
     refresh: function (event) {
