@@ -46,6 +46,10 @@ app.use('/api/mods', require('./routes/mods')(mods))
 app.use('/api/servers', require('./routes/servers')(manager, mods))
 app.use('/api/settings', require('./routes/settings')(settings))
 
+app.get('*', function (req, res) {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'))
+})
+
 io.on('connection', function (socket) {
   socket.emit('missions', missions.missions)
   socket.emit('mods', mods.mods)
