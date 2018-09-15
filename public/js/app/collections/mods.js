@@ -8,7 +8,9 @@ define(function (require) {
       Mod                 = require('app/models/mod');
 
   return Backbone.Collection.extend({
-    comparator: 'name',
+    comparator: function (a, b) {
+      return a.get('name').localeCompare(b.get('name'))
+    },
     model: Mod,
     url: '/api/mods/'
   });
